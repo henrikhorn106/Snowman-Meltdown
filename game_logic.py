@@ -1,4 +1,5 @@
 import random
+
 from ascii_art import STAGES
 
 # List of secret words
@@ -11,8 +12,11 @@ def get_random_word():
 
 
 def display_game_state(mistakes, secret_word, guessed_letters):
+    """Displays the current game state."""
+
     # Display the snowman stage for the current number of mistakes.
     print(STAGES[mistakes])
+
     # Build a display version of the secret word.
     display_word = ""
     for letter in secret_word:
@@ -24,8 +28,6 @@ def display_game_state(mistakes, secret_word, guessed_letters):
 
 
 def play_game():
-
-
     print("Welcome to Snowman Meltdown!")
 
     play_again = True
@@ -33,8 +35,9 @@ def play_game():
         secret_word = get_random_word()
         guessed_letters = []
         mistakes = 0
-        round = 1
+        round_number = 1
 
+        # Enter the game loop.
         while True:
 
             if len(guessed_letters) == len(set(secret_word)):
@@ -45,13 +48,12 @@ def play_game():
                 print(f"\nGame Over! The word was: {secret_word}")
                 break
 
-
-            print(f"\n=====[Round {round}]=====")
+            print(f"\n=====[Round {round_number}]=====")
             # Display the initial game state.
             display_game_state(mistakes, secret_word, guessed_letters)
 
             while True:
-                # Prompt user for one guess
+                # Prompt user for one guess.
                 guess = input("\nGuess a letter: ").lower()
 
                 if len(guess) == 1 and guess.isalpha():
@@ -68,7 +70,7 @@ def play_game():
 
             round += 1
 
-
+        # Enter the Replay loop.
         while True:
             option = input("\nDo you want to play again? (y/n) ")
 
