@@ -25,35 +25,57 @@ def display_game_state(mistakes, secret_word, guessed_letters):
 
 
 def play_game():
-    secret_word = get_random_word()
-    guessed_letters = []
-    correct_letters = set(secret_word)
-    mistakes = 0
+
 
     print("Welcome to Snowman Meltdown!")
 
-    while True:
+    play_again = True
+    while play_again:
+        secret_word = get_random_word()
+        guessed_letters = []
+        mistakes = 0
 
-        if len(guessed_letters) == len(set(secret_word)):
-            print("Congratulations, you saved the snowman!")
-            break
+        while True:
 
-        if mistakes == 4:
-            print(f"Game Over! The word was: {secret_word}")
-            break
+            if len(guessed_letters) == len(set(secret_word)):
+                print("\nCongratulations, you saved the snowman!")
+                break
 
-        # Display the initial game state.
-        display_game_state(mistakes, secret_word, guessed_letters)
+            if mistakes == 4:
+                print(f"\nGame Over! The word was: {secret_word}")
+                break
 
-        # Prompt user for one guess
-        guess = input("Guess a letter: ").lower()
-        print("You guessed:", guess)
+            # Display the initial game state.
+            display_game_state(mistakes, secret_word, guessed_letters)
 
-        if guess in secret_word:
-            guessed_letters.append(guess)
+            while True:
+                # Prompt user for one guess
+                guess = input("Guess a letter: ").lower()
 
-        else:
-            mistakes += 1
+                if len(guess) == 1 and guess.isalpha():
+                    print("You guessed:", guess)
+                    break
+
+                print("Invalid input. Please enter a single letter.")
+
+            if guess in secret_word:
+                guessed_letters.append(guess)
+
+            else:
+                mistakes += 1
+
+
+        while True:
+            option = input("\nDo you want to play again? (y/n) ")
+
+            if option.lower() == "n":
+                play_again = False
+                break
+            elif option.lower() == "y":
+                play_again = True
+                break
+            else:
+                print("Invalid input. Please enter y or n.")
 
 
 if __name__ == "__main__":
