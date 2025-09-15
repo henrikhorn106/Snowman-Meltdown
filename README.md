@@ -17,5 +17,5 @@ Your mission: guess the hidden word before the snowman melts away. Each wrong gu
 ## 🛠️ Installation & Start  
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-username/snowman-saver.git
+   git clone https://github.com/henrikhorn106/snowman-saver.git
    cd snowman-saver
