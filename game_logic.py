@@ -21,7 +21,6 @@ def display_game_state(mistakes, secret_word, guessed_letters):
         else:
             display_word += "_ "
     print("Word: ", display_word)
-    print("\n")
 
 
 def play_game():
@@ -34,6 +33,7 @@ def play_game():
         secret_word = get_random_word()
         guessed_letters = []
         mistakes = 0
+        round = 1
 
         while True:
 
@@ -41,16 +41,18 @@ def play_game():
                 print("\nCongratulations, you saved the snowman!")
                 break
 
-            if mistakes == 4:
+            if mistakes == 8:
                 print(f"\nGame Over! The word was: {secret_word}")
                 break
 
+
+            print(f"\n=====[Round {round}]=====")
             # Display the initial game state.
             display_game_state(mistakes, secret_word, guessed_letters)
 
             while True:
                 # Prompt user for one guess
-                guess = input("Guess a letter: ").lower()
+                guess = input("\nGuess a letter: ").lower()
 
                 if len(guess) == 1 and guess.isalpha():
                     print("You guessed:", guess)
@@ -63,6 +65,8 @@ def play_game():
 
             else:
                 mistakes += 1
+
+            round += 1
 
 
         while True:
