@@ -17,8 +17,8 @@ Your mission: guess the hidden word before the snowman melts away. Each wrong gu
 ## 🛠️ Installation & Start  
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/henrikhorn106/snowman-saver.git
-   cd snowman-saver
+   git clone [https://github.com/henrikhorn106/snowman-saver.git](https://github.com/henrikhorn106/Snowman-Meltdown.git)
+   cd Snowman-Meltdown
 
 2. Run the game:
    ```bash
@@ -31,7 +31,7 @@ Python 3.8+
 
 📂 Project Structure
 ```bash
-   snowman-meltdown/
+   Snowman-Meltdown/
    ├── game_logic.py     # Main game file (entry point)
    ├── words.py          # Word list / word generator
    ├── ascii_art.py      # Snowman ASCII drawings
