@@ -1,9 +1,7 @@
 import random
 
 from ascii_art import STAGES
-
-# List of secret words
-WORDS = ["python", "git", "github", "snowman", "meltdown"]
+from words import WORDS
 
 
 def get_random_word():
@@ -58,8 +56,7 @@ def play_game():
                 # Prompt user for one guess.
                 guess = input("\nGuess a letter: ").strip().lower()
 
-                if len(guess) == 1 and guess.isalpha():
-                    print("You guessed:", guess)
+                if len(guess) == 1 and guess.isalpha() and guess not in guessed_letters:
                     break
 
                 if len(guess) != 1:
@@ -68,8 +65,7 @@ def play_game():
                 if guess in guessed_letters:
                     print(f"You already guessed the letter {guess}.")
 
-
-            if guess in secret_word and guess not in guessed_letters:
+            if guess in secret_word:
                 print(f"Good guess! {guess} is in the word.")
                 guessed_letters.append(guess)
 
