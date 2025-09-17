@@ -1,3 +1,11 @@
+"""
+Game logic for the Snowman Meltdown game.
+
+A fun little word-guessing game where you’re racing against the cold!
+Your mission: guess the hidden word before the snowman melts away.
+Each wrong guess brings him closer to disappearing forever.
+Can you save him in time?
+"""
 import random
 
 from ascii_art import STAGES
@@ -27,7 +35,40 @@ def display_game_state(mistakes, secret_word, guessed_letters):
     print("Attempts left: ", len(STAGES) - mistakes)
 
 
+def replay_game():
+    """Prompts the user for whether to play again."""
+
+    while True:
+        option = input("\nDo you want to play again? (y/n) ").strip().lower()
+
+        if option == "n":
+            return False
+
+        if option == "y":
+            return True
+
+        print("Invalid input. Please enter y or n.")
+
+
+def get_user_guess(guessed_letters):
+    """Prompts the user for a single letter."""
+
+    while True:
+        guess = input("\nGuess a letter: ").strip().lower()
+
+        if len(guess) == 1 and guess.isalpha() and guess not in guessed_letters:
+            return guess
+
+        if len(guess) != 1:
+            print("Invalid input. Please enter a single letter.")
+
+        if guess in guessed_letters:
+            print(f"You already guessed the letter {guess}.")
+
+
 def play_game():
+    """Main game loop."""
+
     print("Welcome to Snowman Meltdown!")
 
     play_again = True
@@ -49,21 +90,12 @@ def play_game():
                 break
 
             print(f"\n=====[Round {round_number}]=====")
+
             # Display the initial game state.
             display_game_state(mistakes, secret_word, guessed_letters)
 
-            while True:
-                # Prompt user for one guess.
-                guess = input("\nGuess a letter: ").strip().lower()
-
-                if len(guess) == 1 and guess.isalpha() and guess not in guessed_letters:
-                    break
-
-                if len(guess) != 1:
-                    print("Invalid input. Please enter a single letter.")
-
-                if guess in guessed_letters:
-                    print(f"You already guessed the letter {guess}.")
+            # Prompt user for one guess.
+            guess = get_user_guess(guessed_letters)
 
             if guess in secret_word:
                 print(f"Good guess! {guess} is in the word.")
@@ -76,17 +108,7 @@ def play_game():
             round_number += 1
 
         # Enter the Replay loop.
-        while True:
-            option = input("\nDo you want to play again? (y/n) ").strip().lower()
-
-            if option.lower() == "n":
-                play_again = False
-                break
-            elif option.lower() == "y":
-                play_again = True
-                break
-            else:
-                print("Invalid input. Please enter y or n.")
+        play_again = replay_game()
 
 
 if __name__ == "__main__":
