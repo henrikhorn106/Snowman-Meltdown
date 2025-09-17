@@ -8,7 +8,7 @@ WORDS = ["python", "git", "github", "snowman", "meltdown"]
 
 def get_random_word():
     """Selects a random word from the list."""
-    return WORDS[random.randint(0, len(WORDS) - 1)]
+    return random.choice(WORDS)
 
 
 def display_game_state(mistakes, secret_word, guessed_letters):
@@ -25,6 +25,8 @@ def display_game_state(mistakes, secret_word, guessed_letters):
         else:
             display_word += "_ "
     print("Word: ", display_word)
+    print("Guessed Letters: ", ", ".join(guessed_letters))
+    print("Attempts left: ", len(STAGES) - mistakes)
 
 
 def play_game():
@@ -40,11 +42,11 @@ def play_game():
         # Enter the game loop.
         while True:
 
-            if len(guessed_letters) == len(set(secret_word)):
+            if all(letter in guessed_letters for letter in secret_word):
                 print("\nCongratulations, you saved the snowman!")
                 break
 
-            if mistakes == 8:
+            if mistakes == len(STAGES):
                 print(f"\nGame Over! The word was: {secret_word}")
                 break
 
@@ -54,25 +56,32 @@ def play_game():
 
             while True:
                 # Prompt user for one guess.
-                guess = input("\nGuess a letter: ").lower()
+                guess = input("\nGuess a letter: ").strip().lower()
 
                 if len(guess) == 1 and guess.isalpha():
                     print("You guessed:", guess)
                     break
 
-                print("Invalid input. Please enter a single letter.")
+                if len(guess) != 1:
+                    print("Invalid input. Please enter a single letter.")
 
-            if guess in secret_word:
+                if guess in guessed_letters:
+                    print(f"You already guessed the letter {guess}.")
+
+
+            if guess in secret_word and guess not in guessed_letters:
+                print(f"Good guess! {guess} is in the word.")
                 guessed_letters.append(guess)
 
             else:
+                print(f"Sorry, {guess} is not in the word.")
                 mistakes += 1
 
-            round += 1
+            round_number += 1
 
         # Enter the Replay loop.
         while True:
-            option = input("\nDo you want to play again? (y/n) ")
+            option = input("\nDo you want to play again? (y/n) ").strip().lower()
 
             if option.lower() == "n":
                 play_again = False

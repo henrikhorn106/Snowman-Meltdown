@@ -1,4 +1,4 @@
-# ❄️ Snowman Saver  
+# ❄️ Snowman-Meltdown
 
 A fun little word-guessing game where you’re racing against the cold!  
 Your mission: guess the hidden word before the snowman melts away. Each wrong guess brings him closer to disappearing forever. Can you save him in time?  
@@ -19,3 +19,20 @@ Your mission: guess the hidden word before the snowman melts away. Each wrong gu
    ```bash
    git clone https://github.com/henrikhorn106/snowman-saver.git
    cd snowman-saver
+
+2. Run the game:
+   ```bash
+   python game_logic.py
+
+---
+
+## Requirements
+Python 3.8+
+
+📂 Project Structure
+```bash
+   snowman-meltdown/
+   ├── game_logic.py     # Main game file (entry point)
+   ├── words.py          # Word list / word generator
+   ├── ascii_art.py      # Snowman ASCII drawings
+   ├── README.md         # Project documentation

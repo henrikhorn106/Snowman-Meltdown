@@ -1,4 +1,5 @@
-# Snowman ASCII Art stages
+"""ASCII stages for Snowman Meltdown"""
+
 STAGES = [
     # Stage 0
     """
@@ -33,27 +34,27 @@ STAGES = [
        (o o) 
     >——( : )——<
     """,
-    # Stage 5
+    # Stage 4
     """
         ___  
       _|___|_
        (o o) 
     >——( : )
     """,
-    # Stage 6
+    # Stage 5
     """
         ___  
       _|___|_
        (o o) 
        ( : )
     """,
-    # Stage 7
+    # Stage 6
     """
         ___  
       _|___|_
        (o o)
     """,
-    # Stage 8
+    # Stage 7
     """
         ___  
       _|___|_
